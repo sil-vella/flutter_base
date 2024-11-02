@@ -8,27 +8,42 @@ class NavigationContainer extends StatelessWidget {
   final Widget child;
   static final List<NavigationLink> _drawerLinks = [];
   static final List<BottomNavigationLink> _bottomNavLinks = [];
+  static final Map<String, WidgetBuilder> _routes = {};
 
   const NavigationContainer({Key? key, required this.child}) : super(key: key);
 
-  /// Hook for plugins to register drawer and bottom navigation links
+  /// Hook for plugins to register navigation links and routes
   static void registerNavigationLinks({
     required List<NavigationLink> drawerLinks,
     required List<BottomNavigationLink> bottomNavLinks,
+    required Map<String, WidgetBuilder> routes,
   }) {
     _drawerLinks.addAll(drawerLinks);
     _bottomNavLinks.addAll(bottomNavLinks);
+    _routes.addAll(routes);
   }
+
+  /// Static method to navigate to a route
+  static void navigateTo(String routeName) {
+    // Global key for navigation
+    navigatorKey.currentState?.pushNamed(routeName);
+  }
+
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("App Navigation"),
+    return MaterialApp(
+      navigatorKey: navigatorKey,
+      routes: _routes, // Register all plugin routes here
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("App Navigation"),
+        ),
+        drawer: _buildDrawer(context),
+        body: child,
+        bottomNavigationBar: _buildBottomNavigationBar(context),
       ),
-      drawer: _buildDrawer(context),
-      body: child,
-      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
@@ -55,33 +70,19 @@ class NavigationContainer extends StatelessWidget {
     );
   }
 
-  Widget? _buildBottomNavigationBar() {
-    // Check if there are fewer than two items
+  Widget? _buildBottomNavigationBar(BuildContext context) {
     if (_bottomNavLinks.length < 2) {
-      // Provide default items to satisfy the BottomNavigationBar requirement
-      return BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'Info',
-          ),
-        ],
-        onTap: (index) {
-          // Handle bottom navigation taps for default items
-        },
-      );
+      return null;
     }
-
     return BottomNavigationBar(
       items: _bottomNavLinks,
       onTap: (index) {
-        // Handle bottom navigation taps for registered items
+        // Navigate to a route based on the selected item
+        if (index < _bottomNavLinks.length) {
+          final selectedRoute = _routes.keys.elementAt(index);
+          navigatorKey.currentState?.pushNamed(selectedRoute);
+        }
       },
     );
   }
-
 }
