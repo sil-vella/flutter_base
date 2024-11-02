@@ -1,10 +1,15 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class BaseApiService {
+class ConnectionModule {
   final String baseUrl;
 
-  BaseApiService(this.baseUrl);
+  ConnectionModule._internal(this.baseUrl);
+
+  /// Factory method to create an instance with the specified baseUrl
+  factory ConnectionModule(String baseUrl) {
+    return ConnectionModule._internal(baseUrl);
+  }
 
   // Method to handle GET requests
   Future<dynamic> sendGetRequest(String route) async {
@@ -27,8 +32,7 @@ class BaseApiService {
   }
 
   // Method to handle POST requests
-  Future<dynamic> sendPostRequest(
-      String route, Map<String, dynamic> data) async {
+  Future<dynamic> sendPostRequest(String route, Map<String, dynamic> data) async {
     final url = Uri.parse('$baseUrl$route');
     try {
       final response = await http.post(
@@ -50,10 +54,10 @@ class BaseApiService {
 
   // Flexible method that accepts both GET and POST requests based on the request type
   Future<dynamic> sendRequest(
-    String route, {
-    String method = 'POST',
-    Map<String, dynamic>? data,
-  }) async {
+      String route, {
+        String method = 'POST',
+        Map<String, dynamic>? data,
+      }) async {
     final url = Uri.parse('$baseUrl$route');
     try {
       http.Response response;

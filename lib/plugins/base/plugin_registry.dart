@@ -1,8 +1,10 @@
-// plugin_registry.dart
-import '../example_plugin/example_plugin_main.dart';
+// plugins/plugin_registry.dart
+import '../shared_plugin/shared_plugin_main.dart';
 
-/// List of all plugin registration functions
-final List<Function> pluginRegistrations = [
-  ExamplePlugin.register,
-  // Add other plugins here in the future
-];
+import 'plugin_manager.dart';
+
+
+void registerPlugins() {
+  PluginManager().registerPlugin(PluginExample());
+
+}

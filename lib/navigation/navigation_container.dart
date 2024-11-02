@@ -71,11 +71,15 @@ class NavigationContainer extends StatelessWidget {
   }
 
   Widget? _buildBottomNavigationBar(BuildContext context) {
-    if (_bottomNavLinks.length < 2) {
+    if (_bottomNavLinks.isEmpty) {
+      print("No items in bottom navigation bar. At least 1 item is required.");
       return null;
+    } else if (_bottomNavLinks.length > 4) {
+      print("Too many items in bottom navigation bar. Limiting to 4 items.");
     }
+
     return BottomNavigationBar(
-      items: _bottomNavLinks,
+      items: _bottomNavLinks.take(4).toList(), // Limits to a maximum of 4 items
       onTap: (index) {
         // Navigate to a route based on the selected item
         if (index < _bottomNavLinks.length) {

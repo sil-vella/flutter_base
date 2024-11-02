@@ -1,6 +1,8 @@
 // main.dart
+import 'package:banner_example/plugins/base/plugin_manager.dart';
 import 'package:flutter/material.dart';
-import 'plugins/base/plugin_manager.dart';
+import 'package:provider/provider.dart';
+import 'providers/app_state_provider.dart';
 import 'plugins/base/plugin_registry.dart';
 import 'services/admobs/ads/banner_ad_widget.dart';
 import 'navigation/navigation_container.dart';
@@ -8,14 +10,15 @@ import 'navigation/navigation_container.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Register all plugins using the registry
-  PluginManager().registerAllPlugins(pluginRegistrations);
-  // Initialize all registered plugins
-  PluginManager().initializeAllPlugins();
+  // Register all plugins
+  registerPlugins();
 
-  runApp(const MaterialApp(
-    home: MyApp(),
-  ));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AppStateProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +26,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Use addPostFrameCallback to set the initial app state and initialize plugins after the first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Set the initial app state
+      Provider.of<AppStateProvider>(context, listen: false).setMainAppState({
+        "theme": "light",
+        "userLoggedIn": false,
+        "counter": 0,
+      });
+
+      // Initialize all plugins with the current context
+      PluginManager().initializeAllPlugins(context);
+    });
+
     return MaterialApp(
       title: 'Banner Example',
       home: NavigationContainer(
