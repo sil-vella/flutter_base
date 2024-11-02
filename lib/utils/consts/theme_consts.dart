@@ -79,22 +79,22 @@ class AppTheme {
         fillColor: AppColors.primaryColor,
         // Background color of input
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.lightGray),
+          borderSide: const BorderSide(color: AppColors.lightGray),
           borderRadius: BorderRadius.circular(8.0),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.lightGray),
+          borderSide: const BorderSide(color: AppColors.lightGray),
           borderRadius: BorderRadius.circular(8.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.accentColor),
+          borderSide: const BorderSide(color: AppColors.accentColor),
           borderRadius: BorderRadius.circular(8.0),
         ),
-        labelStyle: TextStyle(color: AppColors.white),
+        labelStyle: const TextStyle(color: AppColors.white),
         // Label text color
-        hintStyle: TextStyle(color: AppColors.lightGray),
+        hintStyle: const TextStyle(color: AppColors.lightGray),
         // Hint text color
-        errorStyle: TextStyle(color: AppColors.redAccent),
+        errorStyle: const TextStyle(color: AppColors.redAccent),
         // Error text color
         contentPadding: AppPadding.defaultPadding,
       ),

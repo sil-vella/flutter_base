@@ -52,11 +52,11 @@ class NavigationContainer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            decoration: const BoxDecoration(
+          const DrawerHeader(
+            decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: const Text(
+            child: Text(
               'Navigation Drawer',
               style: TextStyle(
                 color: Colors.white,

@@ -30,16 +30,14 @@ class MyApp extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // Set the initial app state
       Provider.of<AppStateProvider>(context, listen: false).setMainAppState({
-        "theme": "light",
-        "userLoggedIn": false,
-        "counter": 0,
+        "app_main_state": "init",
       });
 
       // Initialize all plugins with the current context
       PluginManager().initializeAllPlugins(context);
     });
 
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Banner Example',
       home: NavigationContainer(
         child: Center(

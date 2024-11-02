@@ -17,11 +17,19 @@ class ConnectToDb implements AppPlugin {
   @override
   void initialize(BuildContext context) {
     print("ConnectToDb initialized");
-    final appState = Provider.of<AppStateProvider>(context, listen: false);
-    // Get state of other plugin
-    final otherPluginState = appState.getPluginState<Map<String, dynamic>>("PluginBState");
 
-    registerModules(); // Register shared modules during initialization
+    // Register shared modules before accessing any states or services
+    registerModules();
+
+    final appState = Provider.of<AppStateProvider>(context, listen: false);
+
+    // Attempt to access another plugin's state (if necessary)
+    final otherPluginState = appState.getPluginState<Map<String, dynamic>>("PluginBState");
+    if (otherPluginState != null) {
+      print("Accessed PluginBState: $otherPluginState");
+    } else {
+      print("PluginBState not available during ConnectToDb initialization.");
+    }
   }
 
   @override

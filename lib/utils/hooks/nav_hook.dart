@@ -12,7 +12,4 @@ class NavigationItemHook extends Hook<List<NavigationItem>> {
   NavigationItemHook();
 
   // Register a callback with a list of navigation items
-  void register(List<NavigationItem> Function() callback) {
-    super.register(callback);
-  }
 }
