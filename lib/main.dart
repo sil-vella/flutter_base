@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'plugins/base/plugin_manager.dart';
 import 'plugins/base/plugin_registry.dart';
 import 'services/admobs/ads/banner_ad_widget.dart';
+import 'navigation/navigation_container.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Banner Example',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Banner Example'),
-        ),
-        body: const Center(
+      home: NavigationContainer(
+        child: Center(
           child: BannerAdWidget(),
         ),
       ),
