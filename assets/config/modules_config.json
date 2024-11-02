@@ -1,0 +1,19 @@
+{
+  "plugins": [
+    {
+      "slug": "MainPlugin",
+      "enabled": true,
+      "initAtStartup": true
+    },
+    {
+      "slug": "ProfilePlugin",
+      "enabled": false,
+      "initAtStartup": false
+    },
+    {
+      "slug": "LoginPlugin",
+      "enabled": true,
+      "initAtStartup": true
+    }
+  ]
+}
