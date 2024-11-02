@@ -1,10 +1,10 @@
 // main.dart
-import 'package:banner_example/plugins/base/plugin_manager.dart';
+import 'package:banner_example/plugins/00_base/plugin_manager.dart';
+import 'package:banner_example/plugins/admobs/modules/banner/banner_ad_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/app_state_provider.dart';
-import 'plugins/base/plugin_registry.dart';
-import 'services/admobs/ads/banner_ad_widget.dart';
+import 'plugins/00_base/plugin_registry.dart';
 import 'navigation/navigation_container.dart';
 
 void main() {

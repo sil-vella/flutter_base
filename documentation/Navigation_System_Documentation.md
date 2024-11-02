@@ -178,7 +178,7 @@ class ScreenTwo extends StatelessWidget {
 - **Routes**: Registers `/screen_one` and `/screen_two` routes, mapped to `ScreenOne` and `ScreenTwo` respectively.
 
 ```dart
-// shared_plugin_main.dart
+// example_plugin_main.dart
 import 'package:flutter/material.dart';
 import '../../navigation/navigation_container.dart';
 import '../base/app_plugin.dart';

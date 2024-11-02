@@ -1,7 +1,7 @@
 // services/admobs/banner_ad_widget.dart
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import '../banner_ad_manager.dart';
+import 'banner_ad_manager.dart';
 
 class BannerAdWidget extends StatelessWidget {
   const BannerAdWidget({Key? key}) : super(key: key);

@@ -1,12 +1,11 @@
-// plugins/shared_plugin/connect_to_db_main.dart
+// plugins/shared_plugin/admobs_main.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../navigation/navigation_container.dart';
 import '../../providers/app_state_provider.dart';
-import '../base/app_plugin.dart';
-import '../base/module_manager.dart';
-import 'modules/shared_module_one.dart';
-import 'modules/shared_module_two.dart';
+import '../../utils/consts/config.dart';
+import '../00_base/app_plugin.dart';
+import '../00_base/module_manager.dart';
 import 'screens/screen_one.dart';
 import 'screens/screen_two.dart';
 
@@ -32,8 +31,7 @@ class PluginExample implements AppPlugin {
 
   @override
   void registerModules() {
-    ModuleManager().registerModule("SharedModuleOne", SharedModuleOne());
-    ModuleManager().registerModule("SharedModuleTwo", SharedModuleTwo());
+
   }
 
   /// Register navigation items for the shared plugin
@@ -68,10 +66,11 @@ class PluginExample implements AppPlugin {
   void connectToDb() {
     // Retrieve ConnectionModule factory at the time of connection
     final createConnectionModule = ModuleManager().getModule<Function>("ConnectionModule");
+    final String baseUrl = Config.apiUrl;
 
     if (createConnectionModule != null) {
       // Create a ConnectionModule instance with a specific baseUrl
-      final connectionModule = createConnectionModule("https://example.com/api/");
+      final connectionModule = createConnectionModule(baseUrl);
 
       // Use the instance's methods
       connectionModule.sendGetRequest("/endpoint").then((response) {

@@ -1,10 +1,10 @@
-// plugins/shared_plugin/connect_to_db_main.dart
+// plugins/shared_plugin/admobs_main.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/app_state_provider.dart';
-import '../base/app_plugin.dart';
-import '../base/module_manager.dart';
+import '../00_base/app_plugin.dart';
+import '../00_base/module_manager.dart';
 import 'modules/connection_module.dart';
 
 class ConnectToDb implements AppPlugin {

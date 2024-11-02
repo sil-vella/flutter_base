@@ -106,7 +106,7 @@ This file contains the centralized function for registering all plugins. `regist
 
 ```dart
 // plugins/plugin_registry.dart
-import '../shared_plugin/shared_plugin_main.dart';
+import '../shared_plugin/example_plugin_main.dart';
 import 'plugin_manager.dart';
 
 void registerPlugins() {
@@ -125,7 +125,7 @@ void registerPlugins() {
 `ConnectToDb` is a plugin that registers a `ConnectionModule` as a shared module in `ModuleManager`. This module allows other plugins to connect to a database by specifying a `baseUrl`.
 
 ```dart
-// plugins/shared_plugin/connect_to_db_main.dart
+// plugins/shared_plugin/admobs_main.dart
 import '../base/app_plugin.dart';
 import '../base/module_manager.dart';
 import 'modules/connection_module.dart';
@@ -162,7 +162,7 @@ class ConnectToDb implements AppPlugin {
 - **connectToDb**: Uses `ModuleManager` to access `ConnectionModule` for database connections.
 
 ```dart
-// plugins/shared_plugin/shared_plugin_main.dart
+// plugins/shared_plugin/example_plugin_main.dart
 import 'package:flutter/material.dart';
 import '../../navigation/navigation_container.dart';
 import '../base/app_plugin.dart';

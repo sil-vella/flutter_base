@@ -2,10 +2,13 @@
 import 'dart:io';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../../../../utils/consts/config.dart'; // Import Config
+
 class BannerAdManager {
+  // Use the ad unit ID from Config, depending on platform
   final String adUnitId = Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/9214589741'
-      : 'ca-app-pub-3940256099942544/2435281174';
+      ? Config.admobsBottomBanner01 // Replace with Config for Android
+      : Config.admobsBottomBanner01; // Replace with Config for iOS as well
 
   BannerAd createBannerAd() {
     return BannerAd(
