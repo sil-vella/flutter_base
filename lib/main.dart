@@ -1,7 +1,8 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'plugins/base/plugin_manager.dart';
 import 'plugins/base/plugin_registry.dart';
-import 'services/admobs/banner_ad_manager.dart';
+import 'services/admobs/ads/banner_ad_widget.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,18 +13,13 @@ void main() {
   PluginManager().initializeAllPlugins();
 
   runApp(const MaterialApp(
-    home: BannerExample(),
+    home: MyApp(),
   ));
 }
 
-class BannerExample extends StatefulWidget {
-  const BannerExample({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  @override
-  BannerExampleState createState() => BannerExampleState();
-}
-
-class BannerExampleState extends State<BannerExample> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
