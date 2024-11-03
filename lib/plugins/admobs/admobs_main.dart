@@ -15,6 +15,13 @@ class AdmobsPlugin implements AppPlugin {
   factory AdmobsPlugin() => _instance;
 
   @override
+  void onStartup() {
+    // Custom startup action with dynamic plugin name
+    print("${runtimeType} onStartup");
+    registerModules(); // Register modules at startup
+  }
+
+  @override
   void initialize(BuildContext context) {
     print("AdmobsPlugin initialized");
 
