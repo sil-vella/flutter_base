@@ -1,9 +1,8 @@
-// pref_screen.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_base/plugins/example_plugin/example_plugin_main.dart';
 import 'package:provider/provider.dart';
 import '../../../screens/base_screen.dart';
 import '../../../providers/app_state_provider.dart';
+import 'package:flutter_base/plugins/example_plugin/example_plugin_main.dart';
 
 class ScreenOne extends BaseScreen {
   const ScreenOne({Key? key}) : super(key: key);
@@ -12,8 +11,13 @@ class ScreenOne extends BaseScreen {
   String get title => "Screen One";
 
   @override
+  _ScreenOneState createState() => _ScreenOneState();
+}
+
+class _ScreenOneState extends BaseScreenState<ScreenOne> {
+  @override
   Widget buildContent(BuildContext context) {
-    final pluginStateKey = "$PluginExample().runtimeType}State"; // Dynamically generate the state key
+    final pluginStateKey = "${PluginExample().runtimeType}State"; // Dynamically generate the state key
 
     return Center(
       child: Column(

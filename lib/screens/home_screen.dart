@@ -1,5 +1,6 @@
-// home_screen.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/app_state_provider.dart';
 import 'base_screen.dart';
 
 class HomeScreen extends BaseScreen {
@@ -9,9 +10,17 @@ class HomeScreen extends BaseScreen {
   String get title => 'Home';
 
   @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends BaseScreenState<HomeScreen> {
+  @override
   Widget buildContent(BuildContext context) {
-    return const Center(
-      child: Text('Welcome to the Home Screen!'),
+    // Access AppStateProvider to pass into PlayFunctions
+    final appStateProvider = Provider.of<AppStateProvider>(context, listen: false);
+
+    return Center(
+      child: Text("Home")
     );
   }
 }
